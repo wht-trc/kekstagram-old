@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
-* Студент: [Анастасия Раздобреева] (https://up.htmlacademy.ru/javascript/17/user/200637).
-* Наставник: [Магомед Кандаев] (https://htmlacademy.ru/profile/magomedkandaev).
+* Студент: [Анастасия Раздобреева](https://up.htmlacademy.ru/javascript/17/user/200637).
+* Наставник: [Магомед Кандаев](https://htmlacademy.ru/profile/magomedkandaev).
 
 ---
 
