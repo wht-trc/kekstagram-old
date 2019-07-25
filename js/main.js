@@ -19,13 +19,7 @@ var getRandomElement = function (array) {
 var generateCommentsToPhoto = function () {
   var firstName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var secondName = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var commentsList = ['Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-  ];
+  var commentsList = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
   var comments = [];
   var commentariesAmount = getRandomInteger(1, 5); // количество комментариев к фотографии - случайное число от 1 до 5
 
@@ -42,20 +36,20 @@ var generateCommentsToPhoto = function () {
     // комментарий
     comment.message = getRandomElement(commentsList);
     var isAdditionalComment = getRandomInteger(0, 1); // определяем, будет ли вторая часть комментария
-    //comment.isAdd = isAdditionalComment;
+    // comment.isAdd = isAdditionalComment;
 
     if (isAdditionalComment) {
       var additionalComment = getRandomElement(commentsList);
 
       // исключаем повторные комментарии
-      while (additionalComment == comment.message) {
+      while (additionalComment === comment.message) {
         additionalComment = getRandomElement(commentsList);
       }
       comment.message += ' ' + additionalComment;
     }
     comments[i] = comment;
   }
-  console.log(comments);
+  // console.log(comments);
   return comments;
 };
 
@@ -74,7 +68,7 @@ var generateDescriptionToPhotos = function (photosAmount) {
 
     photos[i] = photo;
   }
-  console.log(photos);
+  // console.log(photos);
   return photos;
 };
 
