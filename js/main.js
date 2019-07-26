@@ -15,6 +15,18 @@ var getRandomElement = function (array) {
 };
 
 
+// функция перемешивания массива в случайном порядке (алгоритм Фишера-Йетса)
+var shuffleArray = function (array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[j];
+    array[j] = array[i];
+    array[i] = temp;
+  }
+  return array;
+};
+
+
 // функция создания комментариев для фотографии
 var generateCommentsToPhoto = function () {
   var firstName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -34,18 +46,15 @@ var generateCommentsToPhoto = function () {
     comment.avatar = 'img/avatar-' + avatarNumber + '.svg';
 
     // комментарий
-    comment.message = getRandomElement(commentsList);
     var isAdditionalComment = getRandomInteger(0, 1); // определяем, будет ли вторая часть комментария
     // comment.isAdd = isAdditionalComment;
 
-    if (isAdditionalComment) {
-      var additionalComment = getRandomElement(commentsList);
+    shuffleArray(commentsList);
+    // console.log(commentsList);
 
-      // исключаем повторные комментарии
-      while (additionalComment === comment.message) {
-        additionalComment = getRandomElement(commentsList);
-      }
-      comment.message += ' ' + additionalComment;
+    comment.message = commentsList[0];
+    if (isAdditionalComment) {
+      comment.message += ' ' + commentsList[1];
     }
     comments[i] = comment;
   }
@@ -62,8 +71,7 @@ var generateDescriptionToPhotos = function (photosAmount) {
     var photo = {};
 
     photo.url = 'photos/' + (i + 1) + '.jpg';
-    var likesAmount = getRandomInteger(15, 200);
-    photo.likes = likesAmount;
+    photo.likes = getRandomInteger(15, 200);
     photo.comments = generateCommentsToPhoto();
 
     photos[i] = photo;
