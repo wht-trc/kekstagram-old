@@ -127,8 +127,10 @@ var input = document.querySelector('#upload-file');
 var popup = document.querySelector('.img-upload__overlay');
 var cancel = document.querySelector('#upload-cancel');
 
+var comment = document.querySelector('.text__description');
+
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && document.activeElement !== comment) {
     closePopup();
   }
 };
