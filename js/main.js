@@ -117,3 +117,128 @@ var renderPhotos = function () {
 };
 
 renderPhotos();
+
+
+// открываем и закрываем окно редактирования изображений
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var input = document.querySelector('#upload-file');
+var popup = document.querySelector('.img-upload__overlay');
+var cancel = document.querySelector('#upload-cancel');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var onInputChange = function () {
+  popup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  popup.classList.add('hidden');
+  input.value = null;
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+input.addEventListener("change", onInputChange);
+
+cancel.addEventListener('click', function () {
+  closePopup();
+});
+
+cancel.addEventListener('keydown', function (evt) {
+  evt.preventDefault();
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+
+// отображение эффектов
+var preview = popup.querySelector('.img-upload__preview');
+var img = preview.querySelector('img');
+var thumbnails = popup.querySelectorAll('.effects__radio');
+var slider = popup.querySelector('.effect-level');
+var effects = ['none', 'chrome', 'sepia', 'marvin', 'phobos', 'heat'];
+
+
+var onThumbnailChange = function (thumbnail, effect) {
+  thumbnail.addEventListener('change', function () {
+    if (img.classList.length > 0) {
+      img.classList.remove(img.classList[img.classList.length - 1]);
+    }
+
+    slider.classList.remove('hidden');
+
+    if (thumbnail === thumbnails[0]) {
+      slider.classList.add('hidden');
+      console.log(slider);
+    }
+
+    img.classList.add(effect);
+  });
+};
+
+
+for (var i = 0; i < effects.length; i++) {
+  onThumbnailChange(thumbnails[i], 'effects__preview--' + effects[i]);
+  console.log('effects__preview--' + effects[i]);
+}
+
+thumbnails[0].checked = true;
+slider.classList.add('hidden');
+
+
+// определение уровня насыщенности фильтров
+var INITIAL_SATURATION = 100;
+var effectLevelPin = popup.querySelector('.effect-level__pin');
+var effectLevelLine = popup.querySelector('.effect-level__line');
+var effectLevelDepth = popup.querySelector('.effect-level__depth');
+var effectLevelValue = popup.querySelector('.effect-level__value');
+
+effectLevelPin.style.left = '100%';
+effectLevelDepth.style.width = '100%';
+
+// обработчик, изменяющий уровень насыщенности фильтра для изображения
+effectLevelPin.addEventListener('mouseup', function () {
+
+  // хз, что делать Т__Т
+});
+
+
+// масштаб
+var MAX_SCALE = 100;
+var MIN_SCALE = 25;
+
+var scalePreview = popup.querySelector('.img-upload__preview');
+var scaleImg = scalePreview.querySelector('img');
+var scaleSmaller = popup.querySelector('.scale__control--smaller');
+var scaleBigger = popup.querySelector('.scale__control--bigger');
+var scaleValue = popup.querySelector('.scale__control--value');
+var scale = 1;
+scaleValue.value = 100 * scale + '%';
+
+
+var onBiggerButtonClick = function () {
+  if (scale < 1) {
+    scale += 0.25;
+  }
+  scaleImg.style.transform = 'scale(' + scale + ')';
+  scaleValue.value = 100 * scale + '%';
+};
+
+var onSmallerButtonClick = function () {
+  if (scale >= 0.5) {
+    scale -= 0.25;
+  }
+  scaleImg.style.transform = 'scale(' + scale + ')';
+  scaleValue.value = 100 * scale + '%';
+};
+
+
+scaleBigger.addEventListener('click', onBiggerButtonClick);
+scaleSmaller.addEventListener('click', onSmallerButtonClick);
