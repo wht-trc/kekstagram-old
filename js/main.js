@@ -144,7 +144,7 @@ var closePopup = function () {
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-input.addEventListener("change", onInputChange);
+input.addEventListener('change', onInputChange);
 
 cancel.addEventListener('click', function () {
   closePopup();
@@ -176,7 +176,7 @@ var onThumbnailChange = function (thumbnail, effect) {
 
     if (thumbnail === thumbnails[0]) {
       slider.classList.add('hidden');
-      console.log(slider);
+      // console.log(slider);
     }
 
     img.classList.add(effect);
@@ -186,7 +186,7 @@ var onThumbnailChange = function (thumbnail, effect) {
 
 for (var i = 0; i < effects.length; i++) {
   onThumbnailChange(thumbnails[i], 'effects__preview--' + effects[i]);
-  console.log('effects__preview--' + effects[i]);
+  // console.log('effects__preview--' + effects[i]);
 }
 
 thumbnails[0].checked = true;
@@ -194,11 +194,11 @@ slider.classList.add('hidden');
 
 
 // определение уровня насыщенности фильтров
-var INITIAL_SATURATION = 100;
+// var INITIAL_SATURATION = 100;
 var effectLevelPin = popup.querySelector('.effect-level__pin');
-var effectLevelLine = popup.querySelector('.effect-level__line');
+// var effectLevelLine = popup.querySelector('.effect-level__line');
 var effectLevelDepth = popup.querySelector('.effect-level__depth');
-var effectLevelValue = popup.querySelector('.effect-level__value');
+// var effectLevelValue = popup.querySelector('.effect-level__value');
 
 effectLevelPin.style.left = '100%';
 effectLevelDepth.style.width = '100%';
@@ -211,9 +211,6 @@ effectLevelPin.addEventListener('mouseup', function () {
 
 
 // масштаб
-var MAX_SCALE = 100;
-var MIN_SCALE = 25;
-
 var scalePreview = popup.querySelector('.img-upload__preview');
 var scaleImg = scalePreview.querySelector('img');
 var scaleSmaller = popup.querySelector('.scale__control--smaller');
